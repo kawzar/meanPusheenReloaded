@@ -1,9 +1,6 @@
-<h2>Songs</h2>
-
-<div  *ngFor="let song of songs" class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h4 class="card-title">{{song.title}}</h4>
-    <p class="card-text">{{song.lyrics}}</p>
+  <div *ngFor="let song of songs" class="card text-white bg-primary mb-3" style="max-width: 65rem;">
+    <div class="card-body">
+      <h4 class="card-title">{{song.title}}</h4>
+      <p class="card-text">{{song.lyrics}}</p>
+    </div>
   </div>
-</div>

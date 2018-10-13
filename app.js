@@ -12,7 +12,8 @@ const port = 3000;
 // Setup mongoose
 mongoose.connect(MONGO_URL, { useNewUrlParser: true }).catch(e => {
     console.error(e.message);
-  });
+  }); 
+
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -25,12 +26,12 @@ app.use(bodyParser.json());
 // public folder used for static files
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/', (req, res) => {
-    res.send("Invalid page");
+app.get('/songs', (req, res) => {
+    res.redirect('/');
 })
 
 // Controllers
-app.use('/songs', songs);
+app.use('/api/songs', songs);
 
 app.listen(port, () => {
     console.log('Starting server at port ' + port);

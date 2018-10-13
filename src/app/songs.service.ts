@@ -10,7 +10,7 @@ export class SongsService {
   constructor(private http: Http) { }
 
   getAllSongs() {
-    return this.http.get('/songs')
+    return this.http.get('/api/songs')
     .pipe(map(res => res.json()));
   }
 }

@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <h1>\n    {{ title }}\n  </h1>\n  <app-songs></app-songs>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <app-songs></app-songs>\n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
 
 /***/ }),
 
@@ -65,7 +65,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Pusheen app';
+        this.title = 'Cancionero Feminista';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -177,7 +177,7 @@ var SongsService = /** @class */ (function () {
         this.http = http;
     }
     SongsService.prototype.getAllSongs = function () {
-        return this.http.get('/songs')
+        return this.http.get('/api/songs')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     SongsService = __decorate([
@@ -211,7 +211,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Songs</h2>\n<ul>\n  <li *ngFor=\"let song of songs\">\n    {{song.title}} - {{song.lyrics}}\n  </li>\n</ul> "
+module.exports = "  <div *ngFor=\"let song of songs\" class=\"card text-white bg-primary mb-3\" style=\"max-width: 65rem;\">\n    <div class=\"card-body\">\n      <h4 class=\"card-title\">{{song.title}}</h4>\n      <p class=\"card-text\">{{song.lyrics}}</p>\n    </div>\n  </div>\n"
 
 /***/ }),
 

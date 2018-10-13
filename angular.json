@@ -23,7 +23,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootswatch/dist/minty/bootstrap.css",
+              "src/styles.css",
+              "./node_modules/font-awesome/scss/font-awesome.scss"
+
             ],
             "scripts": []
           },
