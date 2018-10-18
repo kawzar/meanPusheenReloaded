@@ -257,7 +257,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"card text-white bg-primary mb-3\" style=\"max-width: 65rem;\">\r\n  <div class=\"card-body\">\r\n    <h4 class=\"card-title\">{{song.title}}</h4>\r\n    <p class=\"card-text\">{{song.lyrics}}</p>\r\n  </div>\r\n</div>"
+module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"card text-white bg-primary mb-3\" style=\"max-width: 65rem;\">\r\n  <div class=\"card-body\">\r\n    <h4 class=\"card-title\">{{song.title}}</h4>\r\n    <p class=\"card-text\" style=\"white-space:pre-wrap;\">{{song.lyrics}}</p>\r\n  </div>\r\n</div>"
 
 /***/ }),
 

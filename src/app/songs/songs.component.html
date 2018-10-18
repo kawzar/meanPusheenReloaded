@@ -3,6 +3,6 @@
 <div *ngFor="let song of songs | searchFilter: 'title' : searchText" class="card text-white bg-primary mb-3" style="max-width: 65rem;">
   <div class="card-body">
     <h4 class="card-title">{{song.title}}</h4>
-    <p class="card-text">{{song.lyrics}}</p>
+    <p class="card-text" style="white-space:pre-wrap;">{{song.lyrics}}</p>
   </div>
 </div>
