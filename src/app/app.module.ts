@@ -5,7 +5,10 @@ import { AppComponent } from './app.component';
 import { SongsComponent } from './songs/songs.component';
 import { SongsService } from './songs.service';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router';
+import { SearchFilterPipe } from './search-filter.pipe'
+import { FormsModule } from '@angular/forms';
+
 
 const ROUTES = [
   {
@@ -22,11 +25,13 @@ const ROUTES = [
 @NgModule({
   declarations: [
     AppComponent,
-    SongsComponent
+    SongsComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
     HttpModule, 
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [SongsService],

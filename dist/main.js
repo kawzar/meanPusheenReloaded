@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <app-songs></app-songs>\n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
+module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <br>\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <app-songs></app-songs>\n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
 
 /***/ }),
 
@@ -98,12 +98,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _songs_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./songs.service */ "./src/app/songs.service.ts");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _search_filter_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search-filter.pipe */ "./src/app/search-filter.pipe.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -129,11 +133,13 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
-                _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["SongsComponent"]
+                _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["SongsComponent"],
+                _search_filter_pipe__WEBPACK_IMPORTED_MODULE_7__["SearchFilterPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_5__["HttpModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(ROUTES)
             ],
             providers: [_songs_service__WEBPACK_IMPORTED_MODULE_4__["SongsService"]],
@@ -141,6 +147,46 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/search-filter.pipe.ts":
+/*!***************************************!*\
+  !*** ./src/app/search-filter.pipe.ts ***!
+  \***************************************/
+/*! exports provided: SearchFilterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchFilterPipe", function() { return SearchFilterPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SearchFilterPipe = /** @class */ (function () {
+    function SearchFilterPipe() {
+    }
+    SearchFilterPipe.prototype.transform = function (items, field, value) {
+        if (!items)
+            return [];
+        if (!value)
+            return items;
+        return items.filter(function (it) { return it[field].toString().toLowerCase().includes(value.toLowerCase()); });
+    };
+    SearchFilterPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'searchFilter'
+        })
+    ], SearchFilterPipe);
+    return SearchFilterPipe;
 }());
 
 
@@ -211,7 +257,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <div *ngFor=\"let song of songs\" class=\"card text-white bg-primary mb-3\" style=\"max-width: 65rem;\">\n    <div class=\"card-body\">\n      <h4 class=\"card-title\">{{song.title}}</h4>\n      <p class=\"card-text\">{{song.lyrics}}</p>\n    </div>\n  </div>\n"
+module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"card text-white bg-primary mb-3\" style=\"max-width: 65rem;\">\r\n  <div class=\"card-body\">\r\n    <h4 class=\"card-title\">{{song.title}}</h4>\r\n    <p class=\"card-text\">{{song.lyrics}}</p>\r\n  </div>\r\n</div>"
 
 /***/ }),
 

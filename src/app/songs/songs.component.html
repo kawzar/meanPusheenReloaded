@@ -1,6 +1,8 @@
-  <div *ngFor="let song of songs" class="card text-white bg-primary mb-3" style="max-width: 65rem;">
-    <div class="card-body">
-      <h4 class="card-title">{{song.title}}</h4>
-      <p class="card-text">{{song.lyrics}}</p>
-    </div>
+<input type="text" class="form-control mb-3" style="max-width: 65rem;" [(ngModel)]="searchText" placeholder="Buscar por titulo..." />
+<p></p>
+<div *ngFor="let song of songs | searchFilter: 'title' : searchText" class="card text-white bg-primary mb-3" style="max-width: 65rem;">
+  <div class="card-body">
+    <h4 class="card-title">{{song.title}}</h4>
+    <p class="card-text">{{song.lyrics}}</p>
   </div>
+</div>
