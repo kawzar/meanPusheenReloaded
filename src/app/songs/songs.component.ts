@@ -15,8 +15,6 @@ export class SongsComponent implements OnInit {
 
   ngOnInit() {
     this.songsService.getAllSongs().subscribe(res => {
-      console.log(res.songs);
-      console.log(res);
       this.songs = res.songs;
     })
   }

@@ -13,4 +13,16 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    const id = req.params['id'];
+    songs.getById(id, (err, song) => {
+        if(err){
+            res.json({ success: false, message: 'Failed to load song. Error: ' + err});
+        } else {
+            res.write(JSON.stringify({success: true, song: song}, null, 2));
+            res.end();
+        }
+    });
+});
+
 module.exports = router;

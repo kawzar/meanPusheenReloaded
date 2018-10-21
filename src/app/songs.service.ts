@@ -13,4 +13,9 @@ export class SongsService {
     return this.http.get('/api/songs')
     .pipe(map(res => res.json()));
   }
+
+  getSongById(id) {
+    return this.http.get('/api/songs/' + id)
+    .pipe(map(res => res.json()));
+  }
 }

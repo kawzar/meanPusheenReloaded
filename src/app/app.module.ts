@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { SearchFilterPipe } from './search-filter.pipe'
 import { FormsModule } from '@angular/forms';
+import { SongViewComponent } from './song-view/song-view.component';
 
 
 const ROUTES = [
@@ -19,6 +20,10 @@ const ROUTES = [
   {
     path: 'songs',
     component: SongsComponent
+  },
+  {
+    path: 'songs/song-details/:id',
+    component: SongViewComponent
   }
 ];
 
@@ -26,7 +31,8 @@ const ROUTES = [
   declarations: [
     AppComponent,
     SongsComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    SongViewComponent
   ],
   imports: [
     BrowserModule,
