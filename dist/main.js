@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <br>\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <router-outlet></router-outlet> \n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
+module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <br>\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <router-outlet></router-outlet> \n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <hr class=\"my-4\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
 
 /***/ }),
 
@@ -65,7 +65,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Cancionero Feminista';
+        this.title = 'Cancionero Feminista 📣';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -218,7 +218,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  song-view works!\n  {{song.lyrics}}\n</p>\n\n\n"
+module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\n<br/>\n<div>\n  <h2>{{song.title}}</h2>\n  <p style=\"white-space:pre-wrap;\">{{song.lyrics}}</p>\n</div>"
 
 /***/ }),
 
