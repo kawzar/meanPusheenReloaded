@@ -1,6 +1,5 @@
-
 {
     "env": {
-    "MONGO_URL": "@my-mlab-url"
+    "MONGO_URL": "@cancionero-feminista-mongo-url"
   }
 }

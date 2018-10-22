@@ -218,7 +218,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\n<br/>\n<div>\n  <h2>{{song.title}}</h2>\n  <p style=\"white-space:pre-wrap;\">{{song.lyrics}}</p>\n</div>"
+module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\n<br/>\n<div>\n  <h2>{{song.title}}</h2>\n  <p *ngIf=\"song.credits && song.credits !== ''\" class=\"text-muted\">{{song.credits}}</p>\n  <p style=\"white-space:pre-wrap;\">{{song.lyrics}}</p>\n</div>"
 
 /***/ }),
 

@@ -2,5 +2,6 @@
 <br/>
 <div>
   <h2>{{song.title}}</h2>
+  <p *ngIf="song.credits && song.credits !== ''" class="text-muted">{{song.credits}}</p>
   <p style="white-space:pre-wrap;">{{song.lyrics}}</p>
 </div>

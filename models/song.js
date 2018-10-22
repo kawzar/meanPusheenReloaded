@@ -12,13 +12,17 @@ const SongSchema = mongoose.Schema({
     order:{
         type: Number,
         required: true
+    },
+    credits:{
+        type: String,
+        required: false
     }
 })
 
 const Song = module.exports = mongoose.model('songs', SongSchema);
 
 module.exports.getAll = (callback) => {
-    Song.find(callback);
+    Song.find(callback).sort('order');
 }
 
 module.exports.getById = (id, callback) => {
