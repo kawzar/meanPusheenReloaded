@@ -26,12 +26,14 @@ app.use(bodyParser.json());
 // public folder used for static files
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/songs', (req, res) => {
-    res.redirect('/');
-})
-
 // Controllers
 app.use('/api/songs', songs);
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist') + '/index.html');
+  })
+
+
 
 app.listen(port, () => {
     console.log('Starting server at port ' + port);
