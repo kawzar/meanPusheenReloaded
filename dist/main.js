@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <br>\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <router-outlet></router-outlet> \n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <hr class=\"my-4\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
+module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <br>\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <router-outlet></router-outlet> \n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <hr class=\"my-4\">\n    <span class=\"text-muted\">\n      <p>\n        8va Marcha del orgullo LGBT+ 🏳️‍🌈 <em>Asamblea TravaMaricaTortaBiFeminista Bahiensx 2018</em> | &nbsp;\n        <a href=\"https://www.facebook.com/Marcha-del-Orgullo-Bahía-Blanca-284405285546307/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/marchadelorgullo.bahia/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
 
 /***/ }),
 
@@ -65,7 +65,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Cancionero Feminista 📣';
+        this.title = 'Cancionero Orgulloso 🏳️‍🌈📣';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
