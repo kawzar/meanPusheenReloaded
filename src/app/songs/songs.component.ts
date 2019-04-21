@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { SongsService } from '../songs.service';
+import { DocumentService, IDocument } from '../songs.service';
 
 @Component({
   selector: 'app-songs',
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.css']
 })
-export class SongsComponent implements OnInit {
+export class DocumentsComponent implements OnInit {
 
-  songs: any = [];
+  documents: IDocument[];
   searchText : string;
 
-  constructor(private songsService: SongsService) { }
+  constructor(private documentsService: DocumentService) { }
 
   ngOnInit() {
-    this.songsService.getAllSongs().subscribe(res => {
-      this.songs = res.songs;
+    this.documentsService.getAll().subscribe(res => {
+      this.documents = res.documents;
     })
   }
 

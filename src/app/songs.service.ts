@@ -2,20 +2,26 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
 import { map } from 'rxjs/operators';
 
+export interface IDocument{
+  title: string;
+  content: string;
+  _id: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class SongsService {
+export class DocumentService {
 
   constructor(private http: Http) { }
 
-  getAllSongs() {
-    return this.http.get('/api/songs')
+  getAll() {
+    return this.http.get('/api/documents')
     .pipe(map(res => res.json()));
   }
 
-  getSongById(id) {
-    return this.http.get('/api/songs/' + id)
+  getById(id) {
+    return this.http.get('/api/documents/' + id)
     .pipe(map(res => res.json()));
   }
 }

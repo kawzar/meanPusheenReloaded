@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SongsService } from '../songs.service';
+import { DocumentService, IDocument } from '../songs.service';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -7,18 +7,17 @@ import { ActivatedRoute } from "@angular/router";
   templateUrl: './song-view.component.html',
   styleUrls: ['./song-view.component.css']
 })
-export class SongViewComponent implements OnInit {
+export class DocumentViewComponent implements OnInit {
 
-  constructor(private songsService: SongsService, private activatedRoute: ActivatedRoute) { }
+  constructor(private songsService: DocumentService, private activatedRoute: ActivatedRoute) { }
 
-  song: any;
+  document: IDocument;
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.params.id;
-    console.log(id);
     console.log(this.activatedRoute.snapshot.params);
-    this.songsService.getSongById(id).subscribe(res => {
-      this.song = res.song;
+    this.songsService.getById(id).subscribe(res => {
+      this.document = res.document;
     })
   }
 }

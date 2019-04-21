@@ -1,30 +1,22 @@
 const mongoose = require('mongoose');
 
-const SongSchema = mongoose.Schema({
+const DocumentSchema = mongoose.Schema({
     title: {
         type: String, 
         required: true
     }, 
-    lyrics:{
+    content:{
         type: String, 
         required: true
-    },
-    order:{
-        type: Number,
-        required: true
-    },
-    credits:{
-        type: String,
-        required: false
     }
 })
 
-const Song = module.exports = mongoose.model('songs', SongSchema);
+const Document = module.exports = mongoose.model('documents', DocumentSchema);
 
 module.exports.getAll = (callback) => {
-    Song.find(callback).sort('order');
+    Document.find(callback).sort('title');
 }
 
 module.exports.getById = (id, callback) => {
-    Song.findById(id, callback);
+    Document.findById(id, callback);
 }

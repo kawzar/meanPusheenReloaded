@@ -1,7 +1,6 @@
-<a routerLink="/songs" routerLinkActive="active" class="btn btn-link btn-sm">Volver</a>
+<a routerLink="/documents" routerLinkActive="active" class="btn btn-link btn-sm">Volver</a>
 <br/>
 <div>
-  <h2>{{song.title}}</h2>
-  <p *ngIf="song.credits && song.credits !== ''" class="text-muted">{{song.credits}}</p>
-  <p style="white-space:pre-wrap;">{{song.lyrics}}</p>
+  <h2>{{document.title}}</h2>
+  <p style="white-space:pre-wrap;">{{document.content}}</p>
 </div>

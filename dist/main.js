@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"page-header\">\n    <br>\n    <h1> {{ title }} </h1>\n    <hr class=\"my-4\">\n    <router-outlet></router-outlet> \n  </div>\n</div>\n<footer class=\"footer\">\n  <div class=\"container\">\n    <hr class=\"my-4\">\n    <span class=\"text-muted\">\n      <p>\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\n          <i class=\"fa fa-facebook-square\"></i>\n        </a> &nbsp;\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\n          <i class=\"fa fa-instagram\"></i>\n        </a>\n      </p>\n    </span>\n  </div>\n</footer>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"page-header\">\r\n    <br>\r\n    <h1> {{ title }} </h1>\r\n    <hr class=\"my-4\">\r\n    <router-outlet></router-outlet> \r\n  </div>\r\n</div>\r\n<footer class=\"footer\">\r\n  <div class=\"container\">\r\n    <hr class=\"my-4\">\r\n    <span class=\"text-muted\">\r\n      <p>\r\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\r\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\r\n          <i class=\"fa fa-facebook-square\"></i>\r\n        </a> &nbsp;\r\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\r\n          <i class=\"fa fa-instagram\"></i>\r\n        </a>\r\n      </p>\r\n    </span>\r\n  </div>\r\n</footer>"
 
 /***/ }),
 
@@ -120,16 +120,16 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var ROUTES = [
     {
         path: '',
-        redirectTo: 'songs',
+        redirectTo: 'documents',
         pathMatch: 'full'
     },
     {
-        path: 'songs',
-        component: _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["SongsComponent"]
+        path: 'documents',
+        component: _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["DocumentsComponent"]
     },
     {
-        path: 'songs/song-details/:id',
-        component: _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["SongViewComponent"]
+        path: 'documents/document-details/:id',
+        component: _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["DocumentViewComponent"]
     }
 ];
 var AppModule = /** @class */ (function () {
@@ -139,9 +139,9 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
-                _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["SongsComponent"],
+                _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["DocumentsComponent"],
                 _search_filter_pipe__WEBPACK_IMPORTED_MODULE_7__["SearchFilterPipe"],
-                _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["SongViewComponent"]
+                _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["DocumentViewComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -149,7 +149,7 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(ROUTES)
             ],
-            providers: [_songs_service__WEBPACK_IMPORTED_MODULE_4__["SongsService"]],
+            providers: [_songs_service__WEBPACK_IMPORTED_MODULE_4__["DocumentService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -218,7 +218,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\n<br/>\n<div>\n  <h2>{{song.title}}</h2>\n  <p *ngIf=\"song.credits && song.credits !== ''\" class=\"text-muted\">{{song.credits}}</p>\n  <p style=\"white-space:pre-wrap;\">{{song.lyrics}}</p>\n</div>"
+module.exports = "<a routerLink=\"/documents\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br/>\r\n<div>\r\n  <h2>{{document.title}}</h2>\r\n  <p style=\"white-space:pre-wrap;\">{{document.content}}</p>\r\n</div>"
 
 /***/ }),
 
@@ -226,12 +226,12 @@ module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"b
 /*!**************************************************!*\
   !*** ./src/app/song-view/song-view.component.ts ***!
   \**************************************************/
-/*! exports provided: SongViewComponent */
+/*! exports provided: DocumentViewComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SongViewComponent", function() { return SongViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentViewComponent", function() { return DocumentViewComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _songs_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../songs.service */ "./src/app/songs.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -247,29 +247,28 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SongViewComponent = /** @class */ (function () {
-    function SongViewComponent(songsService, activatedRoute) {
+var DocumentViewComponent = /** @class */ (function () {
+    function DocumentViewComponent(songsService, activatedRoute) {
         this.songsService = songsService;
         this.activatedRoute = activatedRoute;
     }
-    SongViewComponent.prototype.ngOnInit = function () {
+    DocumentViewComponent.prototype.ngOnInit = function () {
         var _this = this;
         var id = this.activatedRoute.snapshot.params.id;
-        console.log(id);
         console.log(this.activatedRoute.snapshot.params);
-        this.songsService.getSongById(id).subscribe(function (res) {
-            _this.song = res.song;
+        this.songsService.getById(id).subscribe(function (res) {
+            _this.document = res.document;
         });
     };
-    SongViewComponent = __decorate([
+    DocumentViewComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-song-view',
             template: __webpack_require__(/*! ./song-view.component.html */ "./src/app/song-view/song-view.component.html"),
             styles: [__webpack_require__(/*! ./song-view.component.css */ "./src/app/song-view/song-view.component.css")]
         }),
-        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["SongsService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
-    ], SongViewComponent);
-    return SongViewComponent;
+        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["DocumentService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+    ], DocumentViewComponent);
+    return DocumentViewComponent;
 }());
 
 
@@ -280,12 +279,12 @@ var SongViewComponent = /** @class */ (function () {
 /*!**********************************!*\
   !*** ./src/app/songs.service.ts ***!
   \**********************************/
-/*! exports provided: SongsService */
+/*! exports provided: DocumentService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SongsService", function() { return SongsService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentService", function() { return DocumentService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
@@ -301,25 +300,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SongsService = /** @class */ (function () {
-    function SongsService(http) {
+var DocumentService = /** @class */ (function () {
+    function DocumentService(http) {
         this.http = http;
     }
-    SongsService.prototype.getAllSongs = function () {
-        return this.http.get('/api/songs')
+    DocumentService.prototype.getAll = function () {
+        return this.http.get('/api/documents')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
-    SongsService.prototype.getSongById = function (id) {
-        return this.http.get('/api/songs/' + id)
+    DocumentService.prototype.getById = function (id) {
+        return this.http.get('/api/documents/' + id)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
-    SongsService = __decorate([
+    DocumentService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
         __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
-    ], SongsService);
-    return SongsService;
+    ], DocumentService);
+    return DocumentService;
 }());
 
 
@@ -344,7 +343,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n</div>"
+module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let document of documents | searchFilter: 'title' : searchText | searchFilter: 'content' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['document-details', document._id]\" class=\"list-group-item list-group-item-action\">\r\n      {{document.title}}\r\n  </a>\r\n</div>"
 
 /***/ }),
 
@@ -352,12 +351,12 @@ module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-w
 /*!******************************************!*\
   !*** ./src/app/songs/songs.component.ts ***!
   \******************************************/
-/*! exports provided: SongsComponent */
+/*! exports provided: DocumentsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SongsComponent", function() { return SongsComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentsComponent", function() { return DocumentsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _songs_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../songs.service */ "./src/app/songs.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -371,26 +370,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-var SongsComponent = /** @class */ (function () {
-    function SongsComponent(songsService) {
-        this.songsService = songsService;
-        this.songs = [];
+var DocumentsComponent = /** @class */ (function () {
+    function DocumentsComponent(documentsService) {
+        this.documentsService = documentsService;
     }
-    SongsComponent.prototype.ngOnInit = function () {
+    DocumentsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.songsService.getAllSongs().subscribe(function (res) {
-            _this.songs = res.songs;
+        this.documentsService.getAll().subscribe(function (res) {
+            _this.documents = res.documents;
         });
     };
-    SongsComponent = __decorate([
+    DocumentsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-songs',
             template: __webpack_require__(/*! ./songs.component.html */ "./src/app/songs/songs.component.html"),
             styles: [__webpack_require__(/*! ./songs.component.css */ "./src/app/songs/songs.component.css")]
         }),
-        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["SongsService"]])
-    ], SongsComponent);
-    return SongsComponent;
+        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["DocumentService"]])
+    ], DocumentsComponent);
+    return DocumentsComponent;
 }());
 
 
@@ -458,7 +456,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\hmaca\Documents\Projects\macaproject-root\macaproject\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\hmaca\Documents\Projects\meanPusheenReloaded\src\main.ts */"./src/main.ts");
 
 
 /***/ })

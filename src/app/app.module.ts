@@ -2,37 +2,37 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SongsComponent } from './songs/songs.component';
-import { SongsService } from './songs.service';
+import { DocumentsComponent } from './songs/songs.component';
+import { DocumentService } from './songs.service';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { SearchFilterPipe } from './search-filter.pipe'
 import { FormsModule } from '@angular/forms';
-import { SongViewComponent } from './song-view/song-view.component';
+import { DocumentViewComponent } from './song-view/song-view.component';
 
 
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'songs',
+    redirectTo: 'documents',
     pathMatch: 'full'
   },
   {
-    path: 'songs',
-    component: SongsComponent
+    path: 'documents',
+    component: DocumentsComponent
   },
   {
-    path: 'songs/song-details/:id',
-    component: SongViewComponent
+    path: 'documents/document-details/:id',
+    component: DocumentViewComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    SongsComponent,
+    DocumentsComponent,
     SearchFilterPipe,
-    SongViewComponent
+    DocumentViewComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +40,7 @@ const ROUTES = [
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [SongsService],
+  providers: [DocumentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

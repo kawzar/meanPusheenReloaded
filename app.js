@@ -3,8 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const MONGO_URL = process.env.MONGO_URL;
-const songs = require('./controllers/songsController');
+//const MONGO_URL = process.env.MONGO_URL;
+const documents = require('./controllers/documentsController');
 
 const app = express();
 const port = 3000;
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Controllers
-app.use('/api/songs', songs);
+app.use('/api/documents', documents);
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist') + '/index.html');
