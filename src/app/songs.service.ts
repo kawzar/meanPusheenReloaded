@@ -20,6 +20,11 @@ export class DocumentService {
     .pipe(map(res => res.json()));
   }
 
+  getFiltered(data: string) {
+    return this.http.get('/api/documents/filter/' + data)
+    .pipe(map(res => res.json()));
+  }
+  
   getById(id) {
     return this.http.get('/api/documents/' + id)
     .pipe(map(res => res.json()));

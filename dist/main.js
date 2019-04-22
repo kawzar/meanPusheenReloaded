@@ -308,6 +308,10 @@ var DocumentService = /** @class */ (function () {
         return this.http.get('/api/documents')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
+    DocumentService.prototype.getFiltered = function (data) {
+        return this.http.get('/api/documents/filter/' + data)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+    };
     DocumentService.prototype.getById = function (id) {
         return this.http.get('/api/documents/' + id)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
@@ -343,7 +347,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let document of documents | searchFilter: 'title' : searchText | searchFilter: 'content' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['document-details', document._id]\" class=\"list-group-item list-group-item-action\">\r\n      {{document.title}}\r\n  </a>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"bs-component row\" align=\"center\">\r\n  <input type=\"text\" class=\"form-control col-sm-8\" [(ngModel)]=\"searchText\" placeholder=\"Buscar en el contenido...\" /> &nbsp;\r\n  <a href=\"#\" class=\"btn btn-primary col-sm-1\" id=\"search\" (click)=\"onSearch($event)\">Buscar</a> &nbsp;\r\n  <a href=\"#\" class=\"btn btn-outline-primary col-sm-2\"  [class.disabled]=\"cleanDisabled ? true: null\" id=\"clean\" (click)=\"onClean($event)\">Quitar filtro</a>\r\n  </div>\r\n  <p></p>\r\n  <div *ngFor=\"let document of documents\" class=\"list-group mb-3 row\" >\r\n    <a [routerLink]=\"['document-details', document._id]\" class=\"list-group-item list-group-item-action\">\r\n        {{document.title}}\r\n    </a>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -376,9 +380,27 @@ var DocumentsComponent = /** @class */ (function () {
     }
     DocumentsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.cleanDisabled = true;
         this.documentsService.getAll().subscribe(function (res) {
             _this.documents = res.documents;
         });
+    };
+    DocumentsComponent.prototype.onSearch = function (event) {
+        var _this = this;
+        event.preventDefault();
+        this.cleanDisabled = false;
+        this.documentsService.getFiltered(this.searchText).subscribe(function (res) {
+            _this.documents = res.documents;
+        });
+    };
+    DocumentsComponent.prototype.onClean = function (event) {
+        var _this = this;
+        event.preventDefault();
+        this.documentsService.getAll().subscribe(function (res) {
+            _this.documents = res.documents;
+        });
+        this.searchText = "";
+        this.cleanDisabled = true;
     };
     DocumentsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

@@ -25,4 +25,16 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/filter/:filter', (req, res) => {
+    const filter = req.params['filter'];
+    documents.getFiltered(filter, (err, documentList) => {
+        if(err){
+            res.json({ success: false, message: 'Failed to load documents. Error: ' + err});
+        } else {
+            res.write(JSON.stringify({success: true, documents: documentList}, null, 2));
+            res.end();
+        }
+    });
+});
+
 module.exports = router;
