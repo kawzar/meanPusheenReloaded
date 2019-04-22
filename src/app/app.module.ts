@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SearchFilterPipe } from './search-filter.pipe'
 import { FormsModule } from '@angular/forms';
 import { DocumentViewComponent } from './song-view/song-view.component';
+import { HighlightPipe } from './highlight.pipe';
 
 
 const ROUTES = [
@@ -32,7 +33,8 @@ const ROUTES = [
     AppComponent,
     DocumentsComponent,
     SearchFilterPipe,
-    DocumentViewComponent
+    DocumentViewComponent,
+    HighlightPipe
   ],
   imports: [
     BrowserModule,

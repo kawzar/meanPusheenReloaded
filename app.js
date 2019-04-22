@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-//const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGO_URL;
 const documents = require('./controllers/documentsController');
 
 const app = express();

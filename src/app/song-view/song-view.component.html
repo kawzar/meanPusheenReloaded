@@ -1,6 +1,11 @@
-<a routerLink="/documents" routerLinkActive="active" class="btn btn-link btn-sm">Volver</a>
-<br/>
-<div>
-  <h2>{{document.title}}</h2>
-  <p style="white-space:pre-wrap;">{{document.content}}</p>
+<div class="container">
+  <div class="bs-component row" align="center">
+    <input type="text" class="form-control col-sm-10" [(ngModel)]="searchText" placeholder="Buscar en el contenido..." />
+    <a routerLink="/documents" routerLinkActive="active" class="btn btn-link btn-sm col-sm-2">Volver</a>
+  </div>
+  <br />
+  <div>
+    <h2>{{document.title}}</h2>
+    <p style="white-space:pre-wrap;" [innerHtml]="document.content | highlight : searchText"></p>
+  </div>
 </div>

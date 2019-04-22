@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"page-header\">\r\n    <br>\r\n    <h1> {{ title }} </h1>\r\n    <hr class=\"my-4\">\r\n    <router-outlet></router-outlet> \r\n  </div>\r\n</div>\r\n<footer class=\"footer\">\r\n  <div class=\"container\">\r\n    <hr class=\"my-4\">\r\n    <span class=\"text-muted\">\r\n      <p>\r\n        Bahiensas Feministas 💜 <em>Feminismo para salvarnos</em> | &nbsp;\r\n        <a href=\"https://www.facebook.com/BahiensasFeministas/\" target=\"_blank\">\r\n          <i class=\"fa fa-facebook-square\"></i>\r\n        </a> &nbsp;\r\n        <a href=\"https://www.instagram.com/bahiensas_feministas/\" target=\"_blank\">\r\n          <i class=\"fa fa-instagram\"></i>\r\n        </a>\r\n      </p>\r\n    </span>\r\n  </div>\r\n</footer>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"page-header\">\r\n    <br>\r\n    <h1> {{ title }} </h1>\r\n    <hr class=\"my-4\">\r\n    <router-outlet></router-outlet> \r\n  </div>\r\n</div>\r\n<footer class=\"footer\">\r\n  <div class=\"container\">\r\n    <hr class=\"my-4\">\r\n    <span class=\"text-muted\">\r\n      <p>\r\n        UPCN Salud | &nbsp;\r\n        <a href=\"https://www.facebook.com/UPCN-Delegacion-SALUD-504225006340545/\" target=\"_blank\">\r\n          <i class=\"fa fa-facebook-square\"></i>\r\n        </a> &nbsp;\r\n        <a href=\"https://instagram.com/upcnsalud?utm_source=ig_profile_share&igshid=1buf8k79eepah\" target=\"_blank\">\r\n          <i class=\"fa fa-instagram\"></i>\r\n        </a>\r\n      </p>\r\n    </span>\r\n  </div>\r\n</footer>"
 
 /***/ }),
 
@@ -65,7 +65,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Cancionero Feminista 📣';
+        this.title = 'Normativa UPCN Salud';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -101,12 +101,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_filter_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search-filter.pipe */ "./src/app/search-filter.pipe.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./song-view/song-view.component */ "./src/app/song-view/song-view.component.ts");
+/* harmony import */ var _highlight_pipe__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./highlight.pipe */ "./src/app/highlight.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -141,7 +143,8 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
                 _songs_songs_component__WEBPACK_IMPORTED_MODULE_3__["DocumentsComponent"],
                 _search_filter_pipe__WEBPACK_IMPORTED_MODULE_7__["SearchFilterPipe"],
-                _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["DocumentViewComponent"]
+                _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["DocumentViewComponent"],
+                _highlight_pipe__WEBPACK_IMPORTED_MODULE_10__["HighlightPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -154,6 +157,46 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/highlight.pipe.ts":
+/*!***********************************!*\
+  !*** ./src/app/highlight.pipe.ts ***!
+  \***********************************/
+/*! exports provided: HighlightPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HighlightPipe", function() { return HighlightPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var HighlightPipe = /** @class */ (function () {
+    function HighlightPipe() {
+    }
+    HighlightPipe.prototype.transform = function (value, args) {
+        if (!args) {
+            return value;
+        }
+        var re = new RegExp(args, 'g'); //'gi' for case insensitive and can use 'g' if you want the search to be case sensitive.
+        return value.replace(re, "<mark>" + args + "</mark>");
+    };
+    HighlightPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'highlight'
+        })
+    ], HighlightPipe);
+    return HighlightPipe;
 }());
 
 
@@ -207,7 +250,7 @@ var SearchFilterPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".highlightText {\r\n    background: yellow;\r\n}"
 
 /***/ }),
 
@@ -218,7 +261,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink=\"/documents\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br/>\r\n<div>\r\n  <h2>{{document.title}}</h2>\r\n  <p style=\"white-space:pre-wrap;\">{{document.content}}</p>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"bs-component row\" align=\"center\">\r\n    <input type=\"text\" class=\"form-control col-sm-10\" [(ngModel)]=\"searchText\" placeholder=\"Buscar en el contenido...\" />\r\n    <a routerLink=\"/documents\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm col-sm-2\">Volver</a>\r\n  </div>\r\n  <br />\r\n  <div>\r\n    <h2>{{document.title}}</h2>\r\n    <p style=\"white-space:pre-wrap;\" [innerHtml]=\"document.content | highlight : searchText\"></p>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -347,7 +390,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"bs-component row\" align=\"center\">\r\n  <input type=\"text\" class=\"form-control col-sm-8\" [(ngModel)]=\"searchText\" placeholder=\"Buscar en el contenido...\" /> &nbsp;\r\n  <a href=\"#\" class=\"btn btn-primary col-sm-1\" id=\"search\" (click)=\"onSearch($event)\">Buscar</a> &nbsp;\r\n  <a href=\"#\" class=\"btn btn-outline-primary col-sm-2\"  [class.disabled]=\"cleanDisabled ? true: null\" id=\"clean\" (click)=\"onClean($event)\">Quitar filtro</a>\r\n  </div>\r\n  <p></p>\r\n  <div *ngFor=\"let document of documents\" class=\"list-group mb-3 row\" >\r\n    <a [routerLink]=\"['document-details', document._id]\" class=\"list-group-item list-group-item-action\">\r\n        {{document.title}}\r\n    </a>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"bs-component row\" align=\"center\">\r\n    <input type=\"text\" class=\"form-control col-sm-8\" [(ngModel)]=\"searchText\" placeholder=\"Buscar en el contenido...\" /> &nbsp;\r\n    <a href=\"#\" class=\"btn btn-primary col-sm-1\" id=\"search\" (click)=\"onSearch($event)\">Buscar</a> &nbsp;\r\n    <a href=\"#\" class=\"btn btn-outline-primary col-sm-2\"  [class.disabled]=\"cleanDisabled ? true: null\" id=\"clean\" (click)=\"onClean($event)\">Quitar filtro</a>\r\n  </div>\r\n  <p></p>\r\n  <hr class=\"my-4\">\r\n  <div *ngFor=\"let document of documents\" class=\"list-group mb-3 row\" >\r\n    <a [routerLink]=\"['document-details', document._id]\" class=\"list-group-item list-group-item-action\">\r\n        {{document.title}}\r\n    </a>\r\n  </div>\r\n</div>"
 
 /***/ }),
 

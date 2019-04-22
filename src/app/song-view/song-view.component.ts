@@ -12,6 +12,7 @@ export class DocumentViewComponent implements OnInit {
   constructor(private songsService: DocumentService, private activatedRoute: ActivatedRoute) { }
 
   document: IDocument;
+  searchText: string;
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.params.id;

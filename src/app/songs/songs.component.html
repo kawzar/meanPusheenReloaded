@@ -1,10 +1,11 @@
 <div class="container">
   <div class="bs-component row" align="center">
-  <input type="text" class="form-control col-sm-8" [(ngModel)]="searchText" placeholder="Buscar en el contenido..." /> &nbsp;
-  <a href="#" class="btn btn-primary col-sm-1" id="search" (click)="onSearch($event)">Buscar</a> &nbsp;
-  <a href="#" class="btn btn-outline-primary col-sm-2"  [class.disabled]="cleanDisabled ? true: null" id="clean" (click)="onClean($event)">Quitar filtro</a>
+    <input type="text" class="form-control col-sm-8" [(ngModel)]="searchText" placeholder="Buscar en el contenido..." /> &nbsp;
+    <a href="#" class="btn btn-primary col-sm-1" id="search" (click)="onSearch($event)">Buscar</a> &nbsp;
+    <a href="#" class="btn btn-outline-primary col-sm-2"  [class.disabled]="cleanDisabled ? true: null" id="clean" (click)="onClean($event)">Quitar filtro</a>
   </div>
   <p></p>
+  <hr class="my-4">
   <div *ngFor="let document of documents" class="list-group mb-3 row" >
     <a [routerLink]="['document-details', document._id]" class="list-group-item list-group-item-action">
         {{document.title}}
