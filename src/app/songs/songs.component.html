@@ -10,4 +10,5 @@
       <span class="badge badge-primary badge-pill">{{song.order}}</span>
       {{song.title}}
   </a>
+  <a *ngIf="userLoggedIn" class="btn btn-danger" (click)="delete($event, song._id)">Delete</a>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SongsService } from '../songs.service';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-songs',
@@ -12,16 +13,21 @@ export class SongsComponent implements OnInit {
   songs: any = [];
   searchText : string;
 
-  constructor(private songsService: SongsService, private authService:AuthService) { }
+  constructor(private songsService: SongsService, private authService:AuthService, private router: Router) { }
   
   userLoggedIn: boolean;
 
   ngOnInit() {
     this.songsService.getAllSongs().subscribe(res => {
-      this.songs = res.songs;
+      this.songs = res;
     })
 
     this.userLoggedIn = this.authService.loggedIn;
   }
 
+  delete($event, id: number){
+    this.songsService.deleteSongById(id).subscribe(res => {
+      this.router.navigate(['songs']);
+    });
+  }
 }

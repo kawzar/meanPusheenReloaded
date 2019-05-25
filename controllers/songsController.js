@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
         if(err){
             res.json({ success: false, message: 'Failed to load all songs. Error: ' + err});
         } else {
-            res.write(JSON.stringify({success: true, songs: songList}, null, 2));
+            res.write(JSON.stringify(songList), null, 2);
             res.end();
         }
     });
@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
         if(err){
             res.json({ success: false, message: 'Failed to load song. Error: ' + err});
         } else {
-            res.write(JSON.stringify({success: true, song: song}, null, 2));
+            res.write(JSON.stringify(song, null, 2));
             res.end();
         }
     });
@@ -48,5 +48,22 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
   });
+
+  router.delete('/:id', (req, res) => {
+    const id = req.params['id'];
+    var token = getToken(req.headers);
+    if (token) {
+    songs.findByIdAndDelete(id, (err, song)=> {
+      if(err){
+        res.json({ success: false, message: 'Failed to delete song. Error: ' + err});
+      } else {
+        res.write(JSON.stringify({success: true, songId: id}, null, 2));
+        res.end();
+    }
+    });
+  } else {
+    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  }
+});
 
 module.exports = router;

@@ -18,7 +18,7 @@ export class SongViewComponent implements OnInit {
     console.log(id);
     console.log(this.activatedRoute.snapshot.params);
     this.songsService.getSongById(id).subscribe(res => {
-      this.song = res.song;
+      this.song = res;
     })
   }
 }
