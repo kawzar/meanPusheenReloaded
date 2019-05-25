@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const songs = require('../models/song');
+const passport = require('passport');
 
 router.get('/', (req, res) => {
     songs.getAll((err, songList) => {
@@ -24,5 +25,27 @@ router.get('/:id', (req, res) => {
         }
     });
 });
+
+router.post('/song', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+      console.log(req.body);
+      var newBook = new Book({
+        order: req.body.order,
+        title: req.body.title,
+        lyrics: req.body.lyrics,
+        credits: req.body.credits
+      });
+  
+      newBook.save(function(err) {
+        if (err) {
+          return res.json({success: false, msg: 'Save songs failed.'});
+        }
+        res.json({success: true, msg: 'Successful created new song.'});
+      });
+    } else {
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+  });
 
 module.exports = router;

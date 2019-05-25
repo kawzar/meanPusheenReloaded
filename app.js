@@ -3,8 +3,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const passport = require('passport');
 const MONGO_URL = process.env.MONGO_URL;
+
+//const MONGO_URL = process.env.MONGO_URL;
 const songs = require('./controllers/songsController');
+const user = require('./controllers/userController');
 
 const app = express();
 const port = 3000;
@@ -28,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Controllers
 app.use('/api/songs', songs);
+app.use('/api/user', user);
+app.use(passport.initialize());
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist') + '/index.html');

@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import { SearchFilterPipe } from './search-filter.pipe'
 import { FormsModule } from '@angular/forms';
 import { SongViewComponent } from './song-view/song-view.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 const ROUTES = [
@@ -24,7 +27,17 @@ const ROUTES = [
   {
     path: 'songs/song-details/:id',
     component: SongViewComponent
-  }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    data: { title: 'Sign Up' }
+  },
 ];
 
 @NgModule({
@@ -32,11 +45,14 @@ const ROUTES = [
     AppComponent,
     SongsComponent,
     SearchFilterPipe,
-    SongViewComponent
+    SongViewComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     HttpModule, 
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
