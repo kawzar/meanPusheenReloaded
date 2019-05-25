@@ -105,12 +105,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _signup_signup_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./signup/signup.component */ "./src/app/signup/signup.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _song_add_song_add_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./song-add/song-add.component */ "./src/app/song-add/song-add.component.ts");
+/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./logout/logout.component */ "./src/app/logout/logout.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -149,6 +151,11 @@ var ROUTES = [
         data: { title: 'Login' }
     },
     {
+        path: 'logout',
+        component: _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"],
+        data: { title: 'Logout' }
+    },
+    {
         path: 'signup',
         component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_11__["SignupComponent"],
         data: { title: 'Sign Up' }
@@ -166,7 +173,8 @@ var AppModule = /** @class */ (function () {
                 _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["SongViewComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"],
                 _signup_signup_component__WEBPACK_IMPORTED_MODULE_11__["SignupComponent"],
-                _song_add_song_add_component__WEBPACK_IMPORTED_MODULE_13__["SongAddComponent"]
+                _song_add_song_add_component__WEBPACK_IMPORTED_MODULE_13__["SongAddComponent"],
+                _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -312,6 +320,9 @@ var LoginComponent = /** @class */ (function () {
             }
         });
     };
+    LoginComponent.prototype.logout = function () {
+        this.authService.logout();
+    };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-login',
@@ -321,6 +332,77 @@ var LoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
     ], LoginComponent);
     return LoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/logout/logout.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/logout/logout.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ291dC9sb2dvdXQuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/logout/logout.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/logout/logout.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\r\n  logout works!\r\n</p>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/logout/logout.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/logout/logout.component.ts ***!
+  \********************************************/
+/*! exports provided: LogoutComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogoutComponent", function() { return LogoutComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LogoutComponent = /** @class */ (function () {
+    function LogoutComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    LogoutComponent.prototype.ngOnInit = function () {
+        this.authService.logout();
+        this.router.navigate(['songs']);
+    };
+    LogoutComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-logout',
+            template: __webpack_require__(/*! ./logout.component.html */ "./src/app/logout/logout.component.html"),
+            styles: [__webpack_require__(/*! ./logout.component.css */ "./src/app/logout/logout.component.css")]
+        }),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], LogoutComponent);
+    return LogoutComponent;
 }());
 
 
@@ -465,7 +547,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br />\r\n<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Title</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Credits</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Order</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <a href=\"#\" (click)=\"add($event)\">Add Song</a>\r\n  </fieldset>\r\n</form>"
+module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br />\r\n<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Titulo</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Creditos</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Orden</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <a href=\"#\" (click)=\"add($event)\">Agregar Cancion</a>\r\n  </fieldset>\r\n</form>"
 
 /***/ }),
 
@@ -675,7 +757,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n\r\n<div>\r\n  <a *ngIf=\"userLoggedIn\" [routerLink]=\"['/songs/add']\">Agregar Cancion</a>\r\n</div>\r\n\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n</div>"
+module.exports = "<div class=\"align-right\" *ngIf=\"userLoggedIn\">\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/songs/add']\">Agregar Cancion</a>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/logout']\">Log out</a>\r\n  </div>\r\n\r\n<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n</div>"
 
 /***/ }),
 

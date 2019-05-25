@@ -3,7 +3,7 @@
 <form>
   <fieldset>
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="title">Titulo</label>
       <input name="title" [(ngModel)]="song.title" class="form-control"/>
     </div>
     <div class="form-group">
@@ -11,13 +11,13 @@
       <textarea  name="lyrics" [(ngModel)]="song.lyrics" class="form-control"></textarea>
     </div>
     <div class="form-group">
-      <label for="credits">Credits</label>
+      <label for="credits">Creditos</label>
       <input name="credits" [(ngModel)]="song.credits" class="form-control"/>
     </div>
     <div class="form-group">
-      <label for="order">Order</label>
+      <label for="order">Orden</label>
       <input name="order" [(ngModel)]="song.order" class="form-control" type="number"/>
     </div>
-    <a href="#" (click)="add($event)">Add Song</a>
+    <a href="#" (click)="add($event)">Agregar Cancion</a>
   </fieldset>
 </form>

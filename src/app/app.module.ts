@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SongAddComponent } from './song-add/song-add.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const ROUTES = [
@@ -39,6 +40,11 @@ const ROUTES = [
     data: { title: 'Login' }
   },
   {
+    path: 'logout',
+    component: LogoutComponent,
+    data: { title: 'Logout' }
+  },
+  {
     path: 'signup',
     component: SignupComponent,
     data: { title: 'Sign Up' }
@@ -53,7 +59,8 @@ const ROUTES = [
     SongViewComponent,
     LoginComponent,
     SignupComponent,
-    SongAddComponent
+    SongAddComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
