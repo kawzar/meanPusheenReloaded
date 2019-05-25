@@ -186,6 +186,65 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/auth.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/auth.service.ts ***!
+  \*********************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthService = /** @class */ (function () {
+    function AuthService(http) {
+        this.http = http;
+    }
+    AuthService.prototype.login = function (username, password) {
+        return this.http.post('/api/user/signin', { username: username, password: password })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
+            localStorage.setItem('access_token', result.token);
+            return true;
+        }));
+    };
+    AuthService.prototype.logout = function () {
+        localStorage.removeItem('access_token');
+    };
+    Object.defineProperty(AuthService.prototype, "loggedIn", {
+        get: function () {
+            return (localStorage.getItem('access_token') !== null);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AuthService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], AuthService);
+    return AuthService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/login/login.component.css":
 /*!*******************************************!*\
   !*** ./src/app/login/login.component.css ***!
@@ -221,6 +280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -233,10 +293,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(http, router) {
+    function LoginComponent(http, router, authService) {
         this.http = http;
         this.router = router;
+        this.authService = authService;
         this.loginData = { username: '', password: '' };
         this.message = '';
     }
@@ -244,12 +306,10 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.http.post('api/user/signin', this.loginData).subscribe(function (resp) {
-            _this.data = resp;
-            localStorage.setItem('jwtToken', _this.data.token);
-            _this.router.navigate(['songs']);
-        }, function (err) {
-            _this.message = err.error.msg;
+        this.authService.login(this.loginData.username, this.loginData.password).subscribe(function (res) {
+            if (res) {
+                _this.router.navigate(['songs']);
+            }
         });
     };
     LoginComponent = __decorate([
@@ -258,7 +318,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -615,7 +675,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n</div>"
+module.exports = "<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n\r\n<div>\r\n  <a *ngIf=\"userLoggedIn\" [routerLink]=\"['/songs/add']\">Agregar Cancion</a>\r\n</div>\r\n\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n</div>"
 
 /***/ }),
 
@@ -631,6 +691,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SongsComponent", function() { return SongsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _songs_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../songs.service */ "./src/app/songs.service.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -642,9 +703,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var SongsComponent = /** @class */ (function () {
-    function SongsComponent(songsService) {
+    function SongsComponent(songsService, authService) {
         this.songsService = songsService;
+        this.authService = authService;
         this.songs = [];
     }
     SongsComponent.prototype.ngOnInit = function () {
@@ -652,6 +715,7 @@ var SongsComponent = /** @class */ (function () {
         this.songsService.getAllSongs().subscribe(function (res) {
             _this.songs = res.songs;
         });
+        this.userLoggedIn = this.authService.loggedIn;
     };
     SongsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -659,7 +723,7 @@ var SongsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./songs.component.html */ "./src/app/songs/songs.component.html"),
             styles: [__webpack_require__(/*! ./songs.component.css */ "./src/app/songs/songs.component.css")]
         }),
-        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["SongsService"]])
+        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["SongsService"], _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], SongsComponent);
     return SongsComponent;
 }());

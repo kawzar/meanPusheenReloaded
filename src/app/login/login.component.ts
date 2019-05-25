@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from "@angular/router";
 import { tap, catchError } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,18 +16,16 @@ export class LoginComponent implements OnInit {
   message = '';
   data: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.http.post('api/user/signin',this.loginData).subscribe(resp => {
-      this.data = resp;
-      localStorage.setItem('jwtToken', this.data.token);
-      this.router.navigate(['songs']);
-    }, err => {
-      this.message = err.error.msg;
+    this.authService.login(this.loginData.username, this.loginData.password).subscribe(res => {
+      if(res){
+        this.router.navigate(['songs']);
+      }
     });
   }
 

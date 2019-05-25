@@ -1,5 +1,10 @@
 <input type="text" class="form-control mb-3" style="max-width: 65rem;" [(ngModel)]="searchText" placeholder="Buscar por titulo..." />
 <p></p>
+
+<div>
+  <a *ngIf="userLoggedIn" [routerLink]="['/songs/add']">Agregar Cancion</a>
+</div>
+
 <div *ngFor="let song of songs | searchFilter: 'title' : searchText" class="list-group mb-3" style="max-width: 65rem;">
   <a [routerLink]="['song-details', song._id]" class="list-group-item list-group-item-action">
       <span class="badge badge-primary badge-pill">{{song.order}}</span>
