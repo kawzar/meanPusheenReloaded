@@ -1,17 +1,23 @@
-<div class="form-control">
-  <input name="title" [(ngModel)]="song.title" />
-  <label for="title">Title</label>
-</div>
-<div class="form-control">
-  <input name="lyrics" [(ngModel)]="song.lyrics" />
-  <label for="lyrics">Lyrics</label>
-</div>
-<div class="form-control">
-  <input name="credits" [(ngModel)]="song.credits" />
-  <label for="credits">Credits</label>
-</div>
-<div class="form-control">
-  <input name="order" [(ngModel)]="song.order" />
-  <label for="order">Order</label>
-</div>
-<a href="#" (click)="add($event)">Add Song</a>
+<a routerLink="/songs" routerLinkActive="active" class="btn btn-link btn-sm">Volver</a>
+<br />
+<form>
+  <fieldset>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input name="title" [(ngModel)]="song.title" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="lyrics">Lyrics</label>
+      <textarea  name="lyrics" [(ngModel)]="song.lyrics" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="credits">Credits</label>
+      <input name="credits" [(ngModel)]="song.credits" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="order">Order</label>
+      <input name="order" [(ngModel)]="song.order" class="form-control" type="number"/>
+    </div>
+    <a href="#" (click)="add($event)">Add Song</a>
+  </fieldset>
+</form>
