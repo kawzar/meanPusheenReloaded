@@ -27,7 +27,9 @@ export class SongsComponent implements OnInit {
 
   delete($event, id: number){
     this.songsService.deleteSongById(id).subscribe(res => {
-      this.router.navigate(['songs']);
+      this.songsService.getAllSongs().subscribe(res => {
+        this.songs = res;
+      })
     });
   }
 }
