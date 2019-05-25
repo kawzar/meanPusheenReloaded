@@ -1,0 +1,17 @@
+<div class="form-control">
+  <input name="title" [(ngModel)]="song.title" />
+  <label for="title">Title</label>
+</div>
+<div class="form-control">
+  <input name="lyrics" [(ngModel)]="song.lyrics" />
+  <label for="lyrics">Lyrics</label>
+</div>
+<div class="form-control">
+  <input name="credits" [(ngModel)]="song.credits" />
+  <label for="credits">Credits</label>
+</div>
+<div class="form-control">
+  <input name="order" [(ngModel)]="song.order" />
+  <label for="order">Order</label>
+</div>
+<a href="#" (click)="add($event)">Add Song</a>

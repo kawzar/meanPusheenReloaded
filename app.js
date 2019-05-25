@@ -16,13 +16,14 @@ const port = 3000;
 
 // Setup mongoose
 mongoose.connect(MONGO_URL, { useNewUrlParser: true }).catch(e => {
-    console.error(e.message);
+  console.error(e.message);
   }); 
 
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use(passport.initialize());
 // Middlewares
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -34,7 +35,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Controllers
 app.use('/api/songs', songs);
 app.use('/api/user', user);
-app.use(passport.initialize());
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist') + '/index.html');
