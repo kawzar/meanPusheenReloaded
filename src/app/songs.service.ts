@@ -30,11 +30,25 @@ export class SongsService {
   deleteSongById(id){
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
         'Authorization': localStorage.getItem('jwtToken')
       })
     };
 
     return this.http.delete('/api/songs/' + id, httpOptions)
+  }
+
+  updateSongById(id, song){
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
+    };
+    return this.http.put('/api/songs/' + id, song, httpOptions);
+  }
+
+  addSong(song){
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
+    };
+
+    return this.http.post('/api/songs/', song, httpOptions)
   }
 }

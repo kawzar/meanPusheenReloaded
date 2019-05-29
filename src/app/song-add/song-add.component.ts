@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SongsService } from '../songs.service';
 export interface ISong{
   title:string;
   _id: number;
@@ -15,7 +16,7 @@ export interface ISong{
 })
 export class SongAddComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private songsService: SongsService) { }
   song: any = {title: "", lyrics:"", order: -1, credits:""};
   message: string;
 
@@ -24,16 +25,9 @@ export class SongAddComponent implements OnInit {
 
   add($event){
     $event.preventDefault();
-    console.log(this.song);
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
-    };
-    this.http.post('/api/songs/',this.song, httpOptions).subscribe(resp => {
-      console.log(resp);
+    this.songsService.addSong(this.song).subscribe(res => {
       this.router.navigate(['songs']);
-    }, err => {
-      this.message = err.error.msg;
-    });
+    })
   }
 
 }

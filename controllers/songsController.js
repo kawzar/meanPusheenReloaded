@@ -49,6 +49,26 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
     }
   });
 
+  router.put('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    console.log(token);
+    if (token) {
+      const id = req.params['id'];
+      songs.findByIdAndUpdate(
+        id,
+        req.body,
+        {new: true},
+        (err, song) => {
+        if (err) {
+          return res.json({success: false, msg: 'Save songs failed.'});
+        }
+        res.json({success: true, msg: 'Successful created new song.'})}
+      )
+    } else {
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+  });
+
   router.delete('/:id', (req, res) => {
     const id = req.params['id'];
     var token = getToken(req.headers);

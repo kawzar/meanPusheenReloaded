@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SongAddComponent } from './song-add/song-add.component';
 import { LogoutComponent } from './logout/logout.component';
+import { SongEditComponent } from './song-edit/song-edit.component';
 
 
 const ROUTES = [
@@ -29,6 +30,10 @@ const ROUTES = [
   {
     path: 'songs/song-details/:id',
     component: SongViewComponent
+  },
+  {
+    path: 'songs/edit/:id',
+    component: SongEditComponent
   },
   {
     path: 'songs/add',
@@ -60,7 +65,8 @@ const ROUTES = [
     LoginComponent,
     SignupComponent,
     SongAddComponent,
-    LogoutComponent
+    LogoutComponent,
+    SongEditComponent
   ],
   imports: [
     BrowserModule,

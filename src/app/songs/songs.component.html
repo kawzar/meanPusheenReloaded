@@ -11,4 +11,5 @@
       {{song.title}}
   </a>
   <a *ngIf="userLoggedIn" class="btn btn-danger" (click)="delete($event, song._id)">Delete</a>
+  <a *ngIf="userLoggedIn" [routerLink]="['edit', song._id]" class="list-group-item list-group-item-action">Edit</a>
 </div>

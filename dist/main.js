@@ -106,12 +106,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _song_add_song_add_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./song-add/song-add.component */ "./src/app/song-add/song-add.component.ts");
 /* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./logout/logout.component */ "./src/app/logout/logout.component.ts");
+/* harmony import */ var _song_edit_song_edit_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./song-edit/song-edit.component */ "./src/app/song-edit/song-edit.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -140,6 +142,10 @@ var ROUTES = [
     {
         path: 'songs/song-details/:id',
         component: _song_view_song_view_component__WEBPACK_IMPORTED_MODULE_9__["SongViewComponent"]
+    },
+    {
+        path: 'songs/edit/:id',
+        component: _song_edit_song_edit_component__WEBPACK_IMPORTED_MODULE_15__["SongEditComponent"]
     },
     {
         path: 'songs/add',
@@ -174,7 +180,8 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"],
                 _signup_signup_component__WEBPACK_IMPORTED_MODULE_11__["SignupComponent"],
                 _song_add_song_add_component__WEBPACK_IMPORTED_MODULE_13__["SongAddComponent"],
-                _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"]
+                _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"],
+                _song_edit_song_edit_component__WEBPACK_IMPORTED_MODULE_15__["SongEditComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -564,6 +571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _songs_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../songs.service */ "./src/app/songs.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -576,10 +584,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var SongAddComponent = /** @class */ (function () {
-    function SongAddComponent(http, router) {
+    function SongAddComponent(http, router, songsService) {
         this.http = http;
         this.router = router;
+        this.songsService = songsService;
         this.song = { title: "", lyrics: "", order: -1, credits: "" };
     }
     SongAddComponent.prototype.ngOnInit = function () {
@@ -587,15 +597,8 @@ var SongAddComponent = /** @class */ (function () {
     SongAddComponent.prototype.add = function ($event) {
         var _this = this;
         $event.preventDefault();
-        console.log(this.song);
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Authorization': localStorage.getItem('jwtToken') })
-        };
-        this.http.post('/api/songs/', this.song, httpOptions).subscribe(function (resp) {
-            console.log(resp);
+        this.songsService.addSong(this.song).subscribe(function (res) {
             _this.router.navigate(['songs']);
-        }, function (err) {
-            _this.message = err.error.msg;
         });
     };
     SongAddComponent = __decorate([
@@ -604,9 +607,99 @@ var SongAddComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./song-add.component.html */ "./src/app/song-add/song-add.component.html"),
             styles: [__webpack_require__(/*! ./song-add.component.css */ "./src/app/song-add/song-add.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _songs_service__WEBPACK_IMPORTED_MODULE_3__["SongsService"]])
     ], SongAddComponent);
     return SongAddComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/song-edit/song-edit.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/song-edit/song-edit.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NvbmctZWRpdC9zb25nLWVkaXQuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/song-edit/song-edit.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/song-edit/song-edit.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br />\r\n<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Titulo</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Creditos</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Orden</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <a href=\"#\" (click)=\"update($event)\">Editar Cancion</a>\r\n  </fieldset>\r\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/song-edit/song-edit.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/song-edit/song-edit.component.ts ***!
+  \**************************************************/
+/*! exports provided: SongEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SongEditComponent", function() { return SongEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _songs_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../songs.service */ "./src/app/songs.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SongEditComponent = /** @class */ (function () {
+    function SongEditComponent(songsService, activatedRoute, router, http) {
+        this.songsService = songsService;
+        this.activatedRoute = activatedRoute;
+        this.router = router;
+        this.http = http;
+        this.song = { title: "", credits: "", order: 0, lyrics: "" };
+    }
+    SongEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var id = this.activatedRoute.snapshot.params.id;
+        this.songsService.getSongById(id).subscribe(function (res) {
+            _this.song = res;
+        });
+    };
+    SongEditComponent.prototype.update = function ($event) {
+        var _this = this;
+        $event.preventDefault();
+        var id = this.activatedRoute.snapshot.params.id;
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ 'Authorization': localStorage.getItem('jwtToken') })
+        };
+        this.songsService.updateSongById(id, this.song).subscribe(function (res) {
+            _this.router.navigate(['songs']);
+        });
+    };
+    SongEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-song-edit',
+            template: __webpack_require__(/*! ./song-edit.component.html */ "./src/app/song-edit/song-edit.component.html"),
+            styles: [__webpack_require__(/*! ./song-edit.component.css */ "./src/app/song-edit/song-edit.component.css")]
+        }),
+        __metadata("design:paramtypes", [_songs_service__WEBPACK_IMPORTED_MODULE_1__["SongsService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], SongEditComponent);
+    return SongEditComponent;
 }());
 
 
@@ -726,11 +819,22 @@ var SongsService = /** @class */ (function () {
     SongsService.prototype.deleteSongById = function (id) {
         var httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
-                'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem('jwtToken')
             })
         };
         return this.http.delete('/api/songs/' + id, httpOptions);
+    };
+    SongsService.prototype.updateSongById = function (id, song) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Authorization': localStorage.getItem('jwtToken') })
+        };
+        return this.http.put('/api/songs/' + id, song, httpOptions);
+    };
+    SongsService.prototype.addSong = function (song) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Authorization': localStorage.getItem('jwtToken') })
+        };
+        return this.http.post('/api/songs/', song, httpOptions);
     };
     SongsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -763,7 +867,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"align-right\" *ngIf=\"userLoggedIn\">\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/songs/add']\">Agregar Cancion</a>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/logout']\">Log out</a>\r\n  </div>\r\n\r\n<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n  <a *ngIf=\"userLoggedIn\" class=\"btn btn-danger\" (click)=\"delete($event, song._id)\">Delete</a>\r\n</div>"
+module.exports = "<div class=\"align-right\" *ngIf=\"userLoggedIn\">\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/songs/add']\">Agregar Cancion</a>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/logout']\">Log out</a>\r\n  </div>\r\n\r\n<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n  <a *ngIf=\"userLoggedIn\" class=\"btn btn-danger\" (click)=\"delete($event, song._id)\">Delete</a>\r\n  <a *ngIf=\"userLoggedIn\" [routerLink]=\"['edit', song._id]\" class=\"list-group-item list-group-item-action\">Edit</a>\r\n</div>"
 
 /***/ }),
 
@@ -811,7 +915,9 @@ var SongsComponent = /** @class */ (function () {
     SongsComponent.prototype.delete = function ($event, id) {
         var _this = this;
         this.songsService.deleteSongById(id).subscribe(function (res) {
-            _this.router.navigate(['songs']);
+            _this.songsService.getAllSongs().subscribe(function (res) {
+                _this.songs = res;
+            });
         });
     };
     SongsComponent = __decorate([
