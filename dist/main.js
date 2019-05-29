@@ -160,12 +160,7 @@ var ROUTES = [
         path: 'logout',
         component: _logout_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"],
         data: { title: 'Logout' }
-    },
-    {
-        path: 'signup',
-        component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_11__["SignupComponent"],
-        data: { title: 'Sign Up' }
-    },
+    }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -234,7 +229,7 @@ var AuthService = /** @class */ (function () {
         return this.http.post('/api/user/signin', { username: username, password: password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
             localStorage.setItem('access_token', result.token);
-            return true;
+            return result.success;
         }));
     };
     AuthService.prototype.logout = function () {
@@ -278,7 +273,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <form class=\"form-signin\" (ngSubmit)=\"login()\" #loginForm=\"ngForm\">\r\n      <div class=\"alert alert-warning alert-dismissible\" role=\"alert\" *ngIf=\"message !== ''\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        {{message}}\r\n      </div>\r\n      <h2 class=\"form-signin-heading\">Please sign in</h2>\r\n      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\r\n      <input type=\"email\" class=\"form-control\" placeholder=\"Email address\" [(ngModel)]=\"loginData.username\" name=\"username\" required/>\r\n      <label for=\"inputPassword\" class=\"sr-only\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"loginData.password\" name=\"password\" required/>\r\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" [disabled]=\"!loginForm.form.valid\">Sign in</button>\r\n      <p>\r\n          Not a member? <a [routerLink]=\"['/signup']\">Signup here</a>\r\n      </p>\r\n  </form>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <form class=\"form-signin\" (ngSubmit)=\"login()\" #loginForm=\"ngForm\">\r\n      <div class=\"alert alert-warning alert-dismissible\" role=\"alert\" *ngIf=\"message !== ''\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        {{message}}\r\n      </div>\r\n      <h2 class=\"form-signin-heading\">Log in</h2>\r\n      <label for=\"inputEmail\" class=\"sr-only\">Email</label>\r\n      <input type=\"email\" class=\"form-control\" placeholder=\"Email address\" [(ngModel)]=\"loginData.username\" name=\"username\" required/>\r\n      <label for=\"inputPassword\" class=\"sr-only\">Contraseña</label>\r\n      <input type=\"password\" class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"loginData.password\" name=\"password\" required/>\r\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" [disabled]=\"!loginForm.form.valid\">Log in</button>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -324,6 +319,9 @@ var LoginComponent = /** @class */ (function () {
         this.authService.login(this.loginData.username, this.loginData.password).subscribe(function (res) {
             if (res) {
                 _this.router.navigate(['songs']);
+            }
+            else {
+                alert("El usuario o la contraseña son incorrectos.");
             }
         });
     };
@@ -554,7 +552,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br />\r\n<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Titulo</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Creditos</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Orden</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <a href=\"#\" (click)=\"add($event)\">Agregar Cancion</a>\r\n  </fieldset>\r\n</form>"
+module.exports = "<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Titulo</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Creditos</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Orden</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <button href=\"#\" type=\"submit\" class=\"btn btn-primary\" (click)=\"add($event)\">Guardar</button>\r\n    <button type=\"button\" routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link\">Volver</button>\r\n  </fieldset>\r\n</form>"
 
 /***/ }),
 
@@ -634,7 +632,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link btn-sm\">Volver</a>\r\n<br />\r\n<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Titulo</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Creditos</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Orden</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <a href=\"#\" (click)=\"update($event)\">Editar Cancion</a>\r\n  </fieldset>\r\n</form>"
+module.exports = "<form>\r\n  <fieldset>\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Titulo</label>\r\n      <input name=\"title\" [(ngModel)]=\"song.title\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"lyrics\">Lyrics</label>\r\n      <textarea  name=\"lyrics\" [(ngModel)]=\"song.lyrics\" class=\"form-control\"></textarea>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"credits\">Creditos</label>\r\n      <input name=\"credits\" [(ngModel)]=\"song.credits\" class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"order\">Orden</label>\r\n      <input name=\"order\" [(ngModel)]=\"song.order\" class=\"form-control\" type=\"number\"/>\r\n    </div>\r\n    <button type=\"submit\" href=\"#\" class=\"btn btn-primary\" (click)=\"update($event)\">Guardar</button>\r\n    <button type=\"button\" routerLink=\"/songs\" routerLinkActive=\"active\" class=\"btn btn-link\">Volver</button>\r\n  </fieldset>\r\n</form>"
 
 /***/ }),
 
@@ -867,7 +865,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"align-right\" *ngIf=\"userLoggedIn\">\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/songs/add']\">Agregar Cancion</a>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/logout']\">Log out</a>\r\n  </div>\r\n\r\n<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\" class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n  <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n      <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n      {{song.title}}\r\n  </a>\r\n  <a *ngIf=\"userLoggedIn\" class=\"btn btn-danger\" (click)=\"delete($event, song._id)\">Delete</a>\r\n  <a *ngIf=\"userLoggedIn\" [routerLink]=\"['edit', song._id]\" class=\"list-group-item list-group-item-action\">Edit</a>\r\n</div>"
+module.exports = "<div class=\"list-group mb-3\" *ngIf=\"userLoggedIn\">\r\n    <h5>Opciones de administradora:</h5>\r\n    <div class=\"btn-group\">\r\n      <button class=\"btn btn-primary\" [routerLink]=\"['/songs/add']\">Agregar Cancion</button>\r\n      <button class=\"btn btn-outline-primary\" [routerLink]=\"['/logout']\">Log out</button>\r\n    </div>\r\n</div>\r\n\r\n<input type=\"text\" class=\"form-control mb-3\" style=\"max-width: 65rem;\" [(ngModel)]=\"searchText\" placeholder=\"Buscar por titulo...\" />\r\n<p></p>\r\n<div *ngFor=\"let song of songs | searchFilter: 'title' : searchText\">\r\n  <div class=\"list-group mb-3\" style=\"max-width: 65rem;\">\r\n    <a [routerLink]=\"['song-details', song._id]\" class=\"list-group-item list-group-item-action\">\r\n        <span class=\"badge badge-primary badge-pill\">{{song.order}}</span>\r\n        {{song.title}}\r\n    </a>\r\n    <div *ngIf=\"userLoggedIn\" class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"delete($event, song._id)\">Borrar</button>\r\n        <button type=\"button\" [routerLink]=\"['edit', song._id]\" class=\"btn btn-primary\">Editar</button>\r\n      </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -914,11 +912,13 @@ var SongsComponent = /** @class */ (function () {
     };
     SongsComponent.prototype.delete = function ($event, id) {
         var _this = this;
-        this.songsService.deleteSongById(id).subscribe(function (res) {
-            _this.songsService.getAllSongs().subscribe(function (res) {
-                _this.songs = res;
+        if (confirm("¿Segura que querés borrar esta canción?")) {
+            this.songsService.deleteSongById(id).subscribe(function (res) {
+                _this.songsService.getAllSongs().subscribe(function (res) {
+                    _this.songs = res;
+                });
             });
-        });
+        }
     };
     SongsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

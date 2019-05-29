@@ -26,10 +26,12 @@ export class SongsComponent implements OnInit {
   }
 
   delete($event, id: number){
-    this.songsService.deleteSongById(id).subscribe(res => {
-      this.songsService.getAllSongs().subscribe(res => {
-        this.songs = res;
-      })
-    });
+    if(confirm("¿Segura que querés borrar esta canción?")) {
+      this.songsService.deleteSongById(id).subscribe(res => {
+        this.songsService.getAllSongs().subscribe(res => {
+          this.songs = res;
+        })
+      });
+  }
   }
 }

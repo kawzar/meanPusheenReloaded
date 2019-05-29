@@ -48,12 +48,7 @@ const ROUTES = [
     path: 'logout',
     component: LogoutComponent,
     data: { title: 'Logout' }
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    data: { title: 'Sign Up' }
-  },
+  }
 ];
 
 @NgModule({

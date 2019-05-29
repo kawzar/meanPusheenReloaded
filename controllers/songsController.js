@@ -30,7 +30,6 @@ router.get('/:id', (req, res) => {
 router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
     if (token) {
-      console.log(req.body);
       var newSong = new song({
         order: req.body.order,
         title: req.body.title,
@@ -51,7 +50,6 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
 
   router.put('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
-    console.log(token);
     if (token) {
       const id = req.params['id'];
       songs.findByIdAndUpdate(
