@@ -228,16 +228,16 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.login = function (username, password) {
         return this.http.post('/api/user/signin', { username: username, password: password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
-            localStorage.setItem('access_token', result.token);
-            return result.success;
+            localStorage.setItem('jwtToken', result.token);
+            return true;
         }));
     };
     AuthService.prototype.logout = function () {
-        localStorage.removeItem('access_token');
+        localStorage.removeItem('jwtToken');
     };
     Object.defineProperty(AuthService.prototype, "loggedIn", {
         get: function () {
-            return (localStorage.getItem('access_token') !== null);
+            return (localStorage.getItem('jwtToken') !== null);
         },
         enumerable: true,
         configurable: true
@@ -319,9 +319,6 @@ var LoginComponent = /** @class */ (function () {
         this.authService.login(this.loginData.username, this.loginData.password).subscribe(function (res) {
             if (res) {
                 _this.router.navigate(['songs']);
-            }
-            else {
-                alert("El usuario o la contraseña son incorrectos.");
             }
         });
     };
@@ -823,6 +820,7 @@ var SongsService = /** @class */ (function () {
         return this.http.delete('/api/songs/' + id, httpOptions);
     };
     SongsService.prototype.updateSongById = function (id, song) {
+        console.log(localStorage.getItem('jwtToken'));
         var httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Authorization': localStorage.getItem('jwtToken') })
         };

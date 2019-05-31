@@ -1,28 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const config = require('../config/database');
 require('../config/passport')(passport);
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
-
-router.post('/signup', function(req, res) {
-    if (!req.body.username || !req.body.password) {
-      res.json({success: false, msg: 'Please pass username and password.'});
-    } else {
-      var newUser = new User({
-        username: req.body.username,
-        password: req.body.password
-      });
-      // save the user
-      newUser.save(function(err) {
-        if (err) {
-          return res.json({success: false, msg: 'Username already exists.'});
-        }
-        res.json({success: true, msg: 'Successful created new user.'});
-      });
-    }
-  });
+const USER_SECRET = process.env.AUTH_SECRET;
 
   router.post('/signin', function(req, res) {
     User.findOne({
@@ -37,9 +19,10 @@ router.post('/signup', function(req, res) {
         user.comparePassword(req.body.password, function (err, isMatch) {
           if (isMatch && !err) {
             // if user is found and password is right create a token
-            var token = jwt.sign(user.toJSON(), config.secret);
+            var token = jwt.sign(user.toJSON(), USER_SECRET);
+            console.log("token: " + token);
             // return the information including token as JSON
-            res.json({success: true, token: 'JWT ' + token});
+            res.json({success: true, token: 'jwt ' + token});
           } else {
             res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
           }

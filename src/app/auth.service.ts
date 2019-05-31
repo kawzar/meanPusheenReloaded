@@ -13,17 +13,17 @@ export class AuthService {
     return this.http.post<{ token: string }>('/api/user/signin', { username: username, password: password })
       .pipe(
         map(result => {
-          localStorage.setItem('access_token', result.token);
+          localStorage.setItem('jwtToken', result.token);
           return true;
         })
       );
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('jwtToken');
   }
 
   public get loggedIn(): boolean {
-    return (localStorage.getItem('access_token') !== null);
+    return (localStorage.getItem('jwtToken') !== null);
   }
 }

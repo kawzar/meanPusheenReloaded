@@ -1,5 +1,7 @@
 {
+  "version": 1,
     "env": {
-    "MONGO_URL": "@cancionero-feminista-mongo-url"
+    "MONGO_URL": "@cancionero-feminista-mongo-url",
+    "AUTH_SECRET": "@cancionero-feminista-newusrsecrt"
   }
 }

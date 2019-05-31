@@ -29,6 +29,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
+    console.log(token);
     if (token) {
       var newSong = new song({
         order: req.body.order,
